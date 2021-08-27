@@ -5,7 +5,7 @@ let time = Date.now();
 
 clicker.onclick = function(){
    Number(++number.textContent);
-  clicker.width == 200 ? clicker.width = 400 : clicker.width = 200;
+  clicker.width = clicker.width == 200 ?  400 : 200;
   const curentTime = Date.now();
   const ftime = curentTime - time;
   speed.textContent = (1/(ftime/1000)).toFixed(2);

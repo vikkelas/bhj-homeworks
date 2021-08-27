@@ -17,14 +17,16 @@ for (let index = 1; index < 9; index++){
          Number(++lost.textContent);
       }
 
+      function clear () {
+         dead.textContent = 0;
+         lost.textContent = 0;
+      } 
       if(dead.textContent == 10){
          alert('Вы выиграли!');
-         dead.textContent = 0;
-         lost.textContent = 0;
+        clear();
       } else if(lost.textContent == 5){
          alert('Вы проиграли!');
-         dead.textContent = 0;
-         lost.textContent = 0;
+        clear();
       }
    }
 };
