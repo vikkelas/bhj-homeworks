@@ -1,17 +1,10 @@
-const menuLink = document.getElementsByClassName('menu__link');
-
+const menuLink = document.querySelectorAll('li. menu__link');
+const menuSub = document.querySelectorAll('menu_sub');
 
 for(let i = 0; i < 9; i++){
-   function getClick(i){
-      let btnElement = menuLink.item(i);
-      console.log(btnElement.parentElement);
-      return btnElement;
+   let clickMenu = menuSub[i].parentElement;
+   clickMenu.onclick = ()=>{
+      menuSub.classList.toggle('menu_active')
+      }
    };
-
-   let btnClick = getClick(i);
-   btnClick.onclick = function(){
-      
-   }
-
-};
 
