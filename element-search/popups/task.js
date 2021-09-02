@@ -13,8 +13,8 @@ function closeWindow () {
 }
 
 
-closeBtn.onclick = () => closeWindow();
-closeBtn2.onclick = () => closeWindow();
+closeBtn.onclick = closeWindow;
+closeBtn2.onclick = closeWindow;
 
 change.onclick = () => {
    closeWindow();

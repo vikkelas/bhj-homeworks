@@ -1,10 +1,12 @@
-const menuLink = document.querySelectorAll('li. menu__link');
-const menuSub = document.querySelectorAll('menu_sub');
+const menuLink = document.querySelectorAll('.menu__link');
+const currentActive = [...document.querySelectorAll('.menu_sub')]
 
-for(let i = 0; i < 9; i++){
-   let clickMenu = menuSub[i].parentElement;
-   clickMenu.onclick = ()=>{
-      menuSub.classList.toggle('menu_active')
-      }
-   };
+
+for(let i = 0; i < menuLink.length; i++){      
+   menuLink[i].onclick = ()=>{
+       let subMenu = menuLink[i].closest('li').querySelector('li > ul');
+       subMenu.classList.toggle('menu_active')
+       return false
+   }
+};
 
