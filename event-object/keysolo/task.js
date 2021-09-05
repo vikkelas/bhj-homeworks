@@ -1,4 +1,5 @@
-class Game {
+ class Game {
+
   constructor(container) {
     this.container = container;
     this.wordElement = container.querySelector('.word');
@@ -17,6 +18,7 @@ class Game {
   }
 
   registerEvents() {
+    document.addEventListener(
     /*
       TODO:
       Написать обработчик события, который откликается
