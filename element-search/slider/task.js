@@ -15,21 +15,19 @@ function nextSlide (){
    let active = slids.findIndex(item=>item.classList.contains('slider__item_active'));
    if(active >= 0 && active < slids.length-1){
       i++;
-     changSlid(active,i);
    } else if(active==slids.length-1){
-      i=0;
-      changSlid(active,i);
+      i=0;      
    }
+   changSlid(active,i);
 };
 
 function backSlide (){
    let active = slids.findIndex(item=>item.classList.contains('slider__item_active'));
    if(active<=slids.length-1 && active != 0){
       i--;
-      changSlid(active,i);
    } else if(active == 0){
       i=slids.length-1;
-      changSlid(active,i)
    }
+   changSlid(active,i);
 }
 
