@@ -2,9 +2,6 @@ const btnChat = document.querySelector('.chat-widget__side')
 const chatWindow = document.querySelector('.chat-widget')
 const messageWindow = document.getElementById('chat-widget__input')
 const messages = document.querySelector('.chat-widget__messages')
-let text = null
-let timeMessage = null
-let changeClass = null
 let arrMessagesUser = []
 let index = null
 let arrMessagesBot = [
@@ -14,7 +11,6 @@ let arrMessagesBot = [
 	'Добрый вечер я диспетчер',
 	'Это виннипух на связи',
 ]
-
 
 btnChat.addEventListener('click', () =>
 	chatWindow.classList.add('chat-widget_active')
@@ -28,20 +24,19 @@ messageWindow.addEventListener('keydown', function (e) {
 		})
 		messageWindow.value = ''
 		index++
-		messages.innerHTML += `
-		<div class="message">
-		<div class="message__time"></div>
-		<div class="message__text"></div>
-  </div>`
+
 		sendMessage()
+		sendMessageBot()
 	}
 })
 
 function sendMessage() {
-	text = [...document.querySelectorAll('.message__text')]
-	timeMessage = [...document.querySelectorAll('.message__time')]
-	changeClass = [...document.querySelectorAll('.message')]
-	changeClass[index - 1].classList.add('message_client')
+	messages.innerHTML += `<div class="message message_client">
+	<div class="message__time"></div>
+	<div class="message__text"></div>
+</div>`
+	const text = [...document.querySelectorAll('.message__text')]
+	const timeMessage = [...document.querySelectorAll('.message__time')]
 	text[index - 1].textContent = arrMessagesUser[index - 1].massege
 	timeMessage[index - 1].textContent =
 		arrMessagesUser[index - 1].time.getHours() +
@@ -49,15 +44,15 @@ function sendMessage() {
 		arrMessagesUser[index - 1].time.getMinutes()
 }
 
-function sendMessageBot(){
-
+function sendMessageBot() {
+	let time = new Date()
+	messages.innerHTML += `<div class="message">
+	<div class="message__time"></div>
+	<div class="message__text"></div>
+</div>`
+	const text = [...document.querySelectorAll('.message__text')]
+	const timeMessage = [...document.querySelectorAll('.message__time')]
+	text[index].textContent =
+		arrMessagesBot[Math.floor(Math.random() * arrMessagesBot.length)]
+	timeMessage[index].textContent = time.getHours() + ':' + time.getMinutes()
 }
-
-
-let arrMessagesBot = [
-	'Привет',
-	'Как дела?',
-	'Сейчас мы не можем вам ответить',
-	'Добрый вечер я диспетчер',
-	'Это виннипух на связи',
-]
