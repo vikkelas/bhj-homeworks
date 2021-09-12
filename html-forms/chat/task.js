@@ -2,8 +2,8 @@ const btnChat = document.querySelector('.chat-widget__side')
 const chatWindow = document.querySelector('.chat-widget')
 const messageWindow = document.getElementById('chat-widget__input')
 const messages = document.querySelector('.chat-widget__messages')
+const scrollBox = document.querySelector('.chat-widget__messages-container')
 let arrMessagesUser = []
-let index = null
 let arrMessagesBot = [
 	'Привет',
 	'Как дела?',
@@ -16,15 +16,10 @@ btnChat.addEventListener('click', () =>
 	chatWindow.classList.add('chat-widget_active')
 )
 
-messageWindow.addEventListener('keydown', function (e) {
-	if (e.keyCode === 13) {
-		arrMessagesUser.push({
-			massege: messageWindow.value,
-			time: new Date(),
-		})
+messageWindow.addEventListener('keydown', e => {
+	if (e.keyCode === 13 && messageWindow.value !== '') {
+		arrMessagesUser.push(messageWindow.value)
 		messageWindow.value = ''
-		index++
-
 		sendMessage()
 		sendMessageBot()
 	}
@@ -32,27 +27,16 @@ messageWindow.addEventListener('keydown', function (e) {
 
 function sendMessage() {
 	messages.innerHTML += `<div class="message message_client">
-	<div class="message__time"></div>
-	<div class="message__text"></div>
+	<div class="message__time">${new Date().toTimeString().slice(0, 5)}</div>
+	<div class="message__text">${arrMessagesUser[arrMessagesUser.length - 1]}</div>
 </div>`
-	const text = [...document.querySelectorAll('.message__text')]
-	const timeMessage = [...document.querySelectorAll('.message__time')]
-	text[index - 1].textContent = arrMessagesUser[index - 1].massege
-	timeMessage[index - 1].textContent =
-		arrMessagesUser[index - 1].time.getHours() +
-		':' +
-		arrMessagesUser[index - 1].time.getMinutes()
 }
 
 function sendMessageBot() {
-	let time = new Date()
 	messages.innerHTML += `<div class="message">
-	<div class="message__time"></div>
-	<div class="message__text"></div>
-</div>`
-	const text = [...document.querySelectorAll('.message__text')]
-	const timeMessage = [...document.querySelectorAll('.message__time')]
-	text[index].textContent =
+	<div class="message__time">${new Date().toTimeString().slice(0, 5)}</div>
+	<div class="message__text">${
 		arrMessagesBot[Math.floor(Math.random() * arrMessagesBot.length)]
-	timeMessage[index].textContent = time.getHours() + ':' + time.getMinutes()
+	}</div>
+</div>`
 }
