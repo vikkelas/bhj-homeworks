@@ -23,13 +23,26 @@ btnChanges.forEach(element => {
 btnAddBasket.forEach(element => {
 	element.addEventListener('click', () => {
 		let idItem = element.closest('.product')
-		addBasket(idItem.getAttribute('data-id'))
+		let imgItem = idItem.children[1].getAttribute('src')
+		let amountProduct = idItem.querySelector(
+			'.product__quantity-value'
+		).innerHTML
+		addBasket(idItem.getAttribute('data-id'), imgItem, amountProduct)
 	})
 })
 
-function addBasket(id) {
-	let idItemBasket = basket.querySelector('.cart__product')
-	if (idItemBasket.getAttribute('data-id') === id) {
+function addBasket(id, img, amount) {
+	let basketItem = [...basket.querySelectorAll('.cart__product')]
+	if (basket.children.length == 0) {
+		basket.innerHTML += `<div class="cart__product" data-id=${id}>
+			<img class="cart__product-image" src=${img}>
+			<div class="cart__product-count">${amount}</div>
+	  </div>`
 	} else {
+		consol.log(
+			basketItem.findIndex(function (item, id) {
+				item.getAttribute('data-id') === id
+			})
+		)
 	}
 }
