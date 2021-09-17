@@ -1,14 +1,14 @@
 const promptLink = [...document.querySelectorAll('.has-tooltip')]
 let itemPromp = document.createElement('div')
 itemPromp.setAttribute('class', 'tooltip')
-itemPromp.style.left = 0
-itemPromp.style.top = 0
 
 document.body.addEventListener('click', e => {
 	let clickBtn = e.target
+	let position = clickBtn.getBoundingClientRect()
+	itemPromp.style.left = position.left + 'px'
+	itemPromp.style.top = position.top + 'px'
 	clickBtn.appendChild(itemPromp)
 	clickBtn.children[0].innerHTML = clickBtn.getAttribute('title')
 	clickBtn.children[0].classList.add('tooltip_active')
-	console.log(clickBtn.children[0].innerHTML)
 	e.preventDefault()
 })
