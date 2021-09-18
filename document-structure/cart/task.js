@@ -2,6 +2,7 @@ const btnChanges = [...document.querySelectorAll('.product__quantity-control')]
 const btnAddBasket = [...document.getElementsByClassName('product__add')]
 const basket = document.querySelector('.cart__products')
 const titlPage = document.querySelector('.cart')
+const deletBtn = document.querySelector('.cart__products')
 
 // add basket
 btnAddBasket.forEach(element => {
@@ -43,4 +44,8 @@ btnChanges.forEach(element => {
 			++amountProduct.innerHTML
 		}
 	})
+})
+
+deletBtn.addEventListener('click', e => {
+	e.target.closest('.cart__product').remove()
 })
