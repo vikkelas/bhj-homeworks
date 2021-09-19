@@ -12,8 +12,8 @@ windowElement.addEventListener('keydown', e => {
 btnAdd.addEventListener('click', function (e) {
 	if (windowElement.value.trim() !== '') {
 		addElement()
-		e.preventDefault()
 	}
+	e.preventDefault()
 })
 
 arrayMessage.addEventListener('click', e => {
