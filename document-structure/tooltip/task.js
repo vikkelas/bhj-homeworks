@@ -1,25 +1,27 @@
-const promptLink = [...document.querySelectorAll('.has-tooltip')]
-let itemPromp = document.createElement('div')
-itemPromp.setAttribute('class', 'tooltip')
+let tips = document.querySelectorAll('.has-tooltip')
+let body = document.getElementsByTagName('body')
+let element = document.createElement('div')
+element.classList.add('tooltip')
+let prevTop
+let prevLeft
 
-promptLink.forEach(element => {
-	element.addEventListener('click', e => {
-		let clickBtn = e.target
-		let position = clickBtn.getBoundingClientRect()
-		itemPromp.style.left = position.left + 'px'
-		itemPromp.style.top = position.top + 20 + 'px'
-		clickBtn.appendChild(itemPromp)
-		clickBtn.children[0].innerHTML = clickBtn.getAttribute('title')
-		let activeItem = [...document.querySelectorAll('.tooltip')]
-		let active = [...document.querySelectorAll('.tooltip_active')]
-		if ((active.length = 0)) {
-			clickBtn.children[0].classList.add('tooltip_active')
-		} else {
-			activeItem.forEach(element => {
-				element.classList.remove('tooltip_active')
-				clickBtn.children[0].classList.add('tooltip_active')
-			})
+for (let tip of tips) {
+	let textTip = tip.getAttribute('title')
+	tip.onclick = () => {
+		let coordinats = tip.getBoundingClientRect()
+		let top = coordinats.bottom + 2
+		let left = Math.floor(coordinats.left)
+
+		if (prevTop && top === prevTop && left === prevLeft) {
+			element.classList.toggle('tooltip_active')
+			return false
 		}
-		e.preventDefault()
-	})
-})
+		prevTop = top
+		prevLeft = left
+		element.textContent = textTip
+		element.setAttribute('style', `left:${left}px;  top:${top}px;`)
+		element.classList.add('tooltip_active')
+		document.body.append(element)
+		return false
+	}
+}
